@@ -88,7 +88,9 @@ Puppet::Type.type(:rhsm_repo).provide(:subscription_manager) do
     repo_instances = []
     repos = subscription_manager('repos')
     repos.split("\n\n").each { |repo|
-      repo_instances.push(parse_repos(repo))
+      r = parse_repos(repo)
+      # only consider entries with at an ID in it
+      repo_instances.push(r) if r.is_a?(Hash) and r[:id]
     } unless repos.nil? or repos == "\n\n"
     repo_instances
   end
