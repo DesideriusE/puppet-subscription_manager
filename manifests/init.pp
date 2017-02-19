@@ -85,6 +85,8 @@ class subscription_manager (
   $config_hash     = $::subscription_manager::defaults::config_hash,
 ) inherits ::subscription_manager::defaults {
 
+  fail("${title}: this manifest comes from branch 'satellite-relieve' and is not fully functional")
+
   # validate_x() requires puppetlabs-stdlib and annoys some of the users
 
   # limit use to supported Operating Systems
